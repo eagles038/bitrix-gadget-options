@@ -561,3 +561,248 @@ $arResult['YOUTUBE_SERVICE'] = COption::GetOptionString($MODULE_ID, "YOUTUBE_SER
     </table>
     <input type="submit" value="Сохранить" class="adm-btn-save" />
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
+if ($arParams['PERMISSION'] <= "R") die();
+$MODULE_ID = "custom";
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_REQUEST['agm-gadget'] == 'Y' && $_REQUEST['agm-gadget-id'] == $id) {
+    // Режим работы (Хедер)
+    $OPERATING_MODE_HEADER = $_REQUEST["OPERATING_MODE_HEADER"];
+    COption::RemoveOption($MODULE_ID, "OPERATING_MODE_HEADER");
+    if ($OPERATING_MODE_HEADER) {
+        COption::SetOptionString($MODULE_ID, "OPERATING_MODE_HEADER", $OPERATING_MODE_HEADER);
+    }
+    
+    
+    // Режим работы (Футер)
+    $OPERATING_MODE_FOOTER = $_REQUEST["OPERATING_MODE_FOOTER"];
+    COption::RemoveOption($MODULE_ID, "OPERATING_MODE_FOOTER");
+    if ($OPERATING_MODE_FOOTER) {
+        COption::SetOptionString($MODULE_ID, "OPERATING_MODE_FOOTER", $OPERATING_MODE_FOOTER);
+    }
+
+
+    //Номер телефона
+    $PHONE_MAIN = $_REQUEST["PHONE_MAIN"];
+    COption::RemoveOption($MODULE_ID, "PHONE_MAIN");
+    if ($PHONE_MAIN) {
+        COption::SetOptionString($MODULE_ID, "PHONE_MAIN", $PHONE_MAIN);
+    }
+
+
+    //Email
+    $EMAIL_MAIN = $_REQUEST["EMAIL_MAIN"];
+    COption::RemoveOption($MODULE_ID, "EMAIL_MAIN");
+    if ($EMAIL_MAIN) {
+        COption::SetOptionString($MODULE_ID, "EMAIL_MAIN", $EMAIL_MAIN);
+    }
+
+
+    //Адрес
+    $ADDRESS_MAIN = $_REQUEST["ADDRESS_MAIN"];
+    COption::RemoveOption($MODULE_ID, "ADDRESS_MAIN");
+    if ($ADDRESS_MAIN) {
+        COption::SetOptionString($MODULE_ID, "ADDRESS_MAIN", $ADDRESS_MAIN);
+    }
+
+
+    //Текст в футере
+    $FOOTER_TEXT = $_REQUEST["FOOTER_TEXT"];
+    COption::RemoveOption($MODULE_ID, "FOOTER_TEXT");
+    if ($FOOTER_TEXT) {
+        COption::SetOptionString($MODULE_ID, "FOOTER_TEXT", $FOOTER_TEXT);
+    }
+
+
+    //Товары (Текст)
+    $PRODUCTS_TEXT_MAIN = $_REQUEST["PRODUCTS_TEXT_MAIN"];
+    COption::RemoveOption($MODULE_ID, "PRODUCTS_TEXT_MAIN");
+    if ($PRODUCTS_TEXT_MAIN) {
+        COption::SetOptionString($MODULE_ID, "PRODUCTS_TEXT_MAIN", $PRODUCTS_TEXT_MAIN);
+    }
+
+    
+    //Бренды (Текст)
+    $BRANDS_TEXT_MAIN = $_REQUEST["BRANDS_TEXT_MAIN"];
+    COption::RemoveOption($MODULE_ID, "BRANDS_TEXT_MAIN");
+    if ($BRANDS_TEXT_MAIN) {
+        COption::SetOptionString($MODULE_ID, "BRANDS_TEXT_MAIN", $BRANDS_TEXT_MAIN);
+    }
+
+
+    //О компании (Текст)
+    $COMPANY_TEXT_MAIN = $_REQUEST["COMPANY_TEXT_MAIN"];
+    COption::RemoveOption($MODULE_ID, "COMPANY_TEXT_MAIN");
+    if ($COMPANY_TEXT_MAIN) {
+        COption::SetOptionString($MODULE_ID, "COMPANY_TEXT_MAIN", $COMPANY_TEXT_MAIN);
+    }
+
+    //Картинка в блоке "О компании"
+    if ($_REQUEST["COMPANY_PHOTO_MAIN"]){
+        $COMPANY_PHOTO_MAIN_ID = $_REQUEST["COMPANY_PHOTO_MAIN"];
+        COption::RemoveOption($MODULE_ID, "COMPANY_PHOTO_MAIN_ID");
+        if ($COMPANY_PHOTO_MAIN_ID) {
+            COption::SetOptionString($MODULE_ID, "COMPANY_PHOTO_MAIN_ID", $COMPANY_PHOTO_MAIN_ID);
+        }
+    }
+    if (!$_REQUEST["COMPANY_PHOTO_MAIN"] && !$_REQUEST["COMPANY_PHOTO_MAIN_ID"]) {
+        COption::RemoveOption($MODULE_ID, "COMPANY_PHOTO_MAIN_ID");
+    }
+
+
+    //Контакты (Текст)
+    $CONTACTS_TEXT_MAIN = $_REQUEST["CONTACTS_TEXT_MAIN"];
+    COption::RemoveOption($MODULE_ID, "CONTACTS_TEXT_MAIN");
+    if ($CONTACTS_TEXT_MAIN) {
+        COption::SetOptionString($MODULE_ID, "CONTACTS_TEXT_MAIN", $CONTACTS_TEXT_MAIN);
+    }
+
+
+    //Режим работы (Контакты)
+    $OPERATING_MODE_CONTACTS = $_REQUEST["OPERATING_MODE_CONTACTS"];
+    COption::RemoveOption($MODULE_ID, "OPERATING_MODE_CONTACTS");
+    if ($OPERATING_MODE_CONTACTS) {
+        COption::SetOptionString($MODULE_ID, "OPERATING_MODE_CONTACTS", $OPERATING_MODE_CONTACTS);
+    }
+}
+$arResult = [];
+
+$arResult['OPERATING_MODE_HEADER'] = COption::GetOptionString($MODULE_ID, "OPERATING_MODE_HEADER");
+$arResult['OPERATING_MODE_FOOTER'] = COption::GetOptionString($MODULE_ID, "OPERATING_MODE_FOOTER");
+$arResult['PHONE_MAIN'] = COption::GetOptionString($MODULE_ID, "PHONE_MAIN");
+$arResult['EMAIL_MAIN'] = COption::GetOptionString($MODULE_ID, "EMAIL_MAIN");
+$arResult['ADDRESS_MAIN'] = COption::GetOptionString($MODULE_ID, "ADDRESS_MAIN");
+$arResult['FOOTER_TEXT'] = COption::GetOptionString($MODULE_ID, "FOOTER_TEXT");
+
+
+//Настройки на отдельных страницах
+$arResult['PRODUCTS_TEXT_MAIN'] = COption::GetOptionString($MODULE_ID, "PRODUCTS_TEXT_MAIN");
+$arResult['BRANDS_TEXT_MAIN'] = COption::GetOptionString($MODULE_ID, "BRANDS_TEXT_MAIN");
+$arResult['COMPANY_TEXT_MAIN'] = COption::GetOptionString($MODULE_ID, "COMPANY_TEXT_MAIN");
+$arResult['COMPANY_PHOTO_MAIN_ID'] = COption::GetOptionString($MODULE_ID, "COMPANY_PHOTO_MAIN_ID");
+$arResult['CONTACTS_TEXT_MAIN'] = COption::GetOptionString($MODULE_ID, "CONTACTS_TEXT_MAIN");
+$arResult['OPERATING_MODE_CONTACTS'] = COption::GetOptionString($MODULE_ID, "OPERATING_MODE_CONTACTS");
+?>
+<form action="" method="post">
+    <input type="hidden" name="agm-gadget" value="Y">
+    <input type="hidden" name="agm-gadget-id" value="<?=$id?>">
+    <?=bitrix_sessid_post()?>
+    <h3>Общие настройки сайта</h3>
+    <table>
+        <tr>
+            <td class="adm-detail-content-cell-l">Режим работы (Шапка)</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="OPERATING_MODE_HEADER" size="40" value="<?php echo $arResult['OPERATING_MODE_HEADER'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Режим работы (Подвал)</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="OPERATING_MODE_FOOTER" size="40" value="<?php echo $arResult['OPERATING_MODE_FOOTER'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Режим работы (Контакты)</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="OPERATING_MODE_CONTACTS" size="40" value="<?php echo $arResult['OPERATING_MODE_CONTACTS'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Номер телефона</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="PHONE_MAIN" size="40" value="<?php echo $arResult['PHONE_MAIN'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Email</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="EMAIL_MAIN" size="40" value="<?php echo $arResult['EMAIL_MAIN'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Адрес</td>
+            <td class="adm-detail-content-cell-r"><input type="text" name="ADDRESS_MAIN" size="40" value="<?php echo $arResult['ADDRESS_MAIN'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l">Текст в футере</td>
+            <td class="adm-detail-content-cell-r">
+                <textarea name="FOOTER_TEXT" cols="40" rows="5" style="padding:0 5px;"><?php echo $arResult['FOOTER_TEXT'];?></textarea>
+            </td>
+        </tr>
+    </table>
+
+    <h3>Настройки для главной страницы</h3>
+    <table>
+        <tr>
+            <td class="adm-detail-content-cell-l">Товары (Текст)</td>
+            <td class="adm-detail-content-cell-r">
+                <textarea name="PRODUCTS_TEXT_MAIN" cols="40" rows="5" style="padding:0 5px;"><?php echo $arResult['PRODUCTS_TEXT_MAIN'];?></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adm-detail-content-cell-l">Бренды (Текст)</td>
+            <td class="adm-detail-content-cell-r">
+                <textarea name="BRANDS_TEXT_MAIN" cols="40" rows="5" style="padding:0 5px;"><?php echo $arResult['BRANDS_TEXT_MAIN'];?></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adm-detail-content-cell-l">О компании (Текст)</td>
+            <td class="adm-detail-content-cell-r">
+                <textarea name="COMPANY_TEXT_MAIN" cols="40" rows="5" style="padding:0 5px;"><?php echo $arResult['COMPANY_TEXT_MAIN'];?></textarea>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="adm-detail-content-cell-l">Картинка в блоке "О компании"</td>
+            <td class="adm-detail-content-cell-r"><input type="text" size="40" name="COMPANY_PHOTO_MAIN_ID"  value="<?php echo $arResult['COMPANY_PHOTO_MAIN_ID'];?>" /></td>
+        </tr>
+        <tr>
+            <td class="adm-detail-content-cell-l"></td>
+            <td class="adm-detail-content-cell-r">
+                <?$APPLICATION->IncludeComponent("bitrix:main.file.input", "drag_n_drop",
+                    array(
+                        "INPUT_NAME"=>"COMPANY_PHOTO_MAIN",
+                        "MULTIPLE"=>"N",
+                        "MODULE_ID"=>"main",
+                        "MAX_FILE_SIZE"=>"",
+                        "ALLOW_UPLOAD"=>"I",
+                        "ALLOW_UPLOAD_EXT"=>""
+                    ),
+                    false
+                );?>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="adm-detail-content-cell-l">Контакты (Текст)</td>
+            <td class="adm-detail-content-cell-r">
+                <textarea name="CONTACTS_TEXT_MAIN" cols="40" rows="5" style="padding:0 5px;"><?php echo $arResult['CONTACTS_TEXT_MAIN'];?></textarea>
+            </td>
+        </tr>
+
+   
+    </table>
+    <input type="submit" value="Сохранить" class="adm-btn-save" />
+</form>
